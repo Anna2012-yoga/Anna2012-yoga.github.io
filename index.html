@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Енергія Процвітання</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1639428453651396');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=1639428453651396&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,500;0,600;1,300&family=Manrope:wght@400;500;600;700&display=swap">
@@ -107,9 +121,14 @@ p{margin:0}
   content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(180deg,rgba(11,9,24,.46) 0%,rgba(11,9,24,.2) 38%,rgba(11,9,24,.74) 100%);
 }
+/* перший екран у вертикальних пропорціях 9:16 (на широких екранах висота обмежена) */
+.hero{
+  min-height:min(calc(100vw * 16 / 9),980px);
+  display:flex;align-items:center;
+}
 .hero .wrap{
-  position:relative;z-index:2;
-  padding-block:clamp(64px,13vw,140px);
+  position:relative;z-index:2;width:100%;
+  padding-block:clamp(56px,10vw,110px);
   text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px;
 }
 .hero h1{max-width:12ch;text-shadow:0 2px 26px rgba(11,9,24,.85),0 1px 4px rgba(11,9,24,.55)}
@@ -548,9 +567,6 @@ footer .wrap{padding-block:46px;display:flex;flex-direction:column;gap:26px}
       <button type="button" data-zoom-src="img/r5.jpg"><img src="img/r5.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
       <button type="button" data-zoom-src="img/r6.jpg"><img src="img/r6.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
       <button type="button" data-zoom-src="img/r7.jpg"><img src="img/r7.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
-      <button type="button" data-zoom-src="img/r8.png"><img src="img/r8.png" alt="Відгук учасниці курсу" loading="lazy"></button>
-      <button type="button" data-zoom-src="img/r9.jpg"><img src="img/r9.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
-      <button type="button" data-zoom-src="img/r10.jpg"><img src="img/r10.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
     </div>
   </div>
 </section>
@@ -618,6 +634,10 @@ footer .wrap{padding-block:46px;display:flex;flex-direction:column;gap:26px}
       <details>
         <summary>Чи є рекомендації щодо способу життя?</summary>
         <p>На час курсу варто обмежити алкоголь і будь-які психоактивні речовини — вони збивають ефект практик.</p>
+      </details>
+      <details>
+        <summary>Чи є протипоказання?</summary>
+        <p>Курс не є медичною послугою й не замінює консультацію лікаря. Порадьтеся з лікарем перед початком, якщо ви вагітні, маєте епілепсію чи схильність до судом, психічні розлади, серцево-судинні захворювання, проблеми з тиском або нещодавно перенесли операцію чи травму: окремі дихальні техніки за цих станів протипоказані. Практикуйте у спокійному місці, не за кермом; якщо під час медитації з'явилося запаморочення або різко погіршився стан — зупиніться. Повний перелік застережень — у <a href="oferta.html" style="color:var(--accent)">публічній оферті</a>.</p>
       </details>
       <details>
         <summary>Як курс впливає на самопочуття?</summary>
@@ -713,6 +733,18 @@ function tick(){
 }
 tick();
 setInterval(tick, 1000);
+
+// Подія «перехід до оплати» для Meta Pixel
+Array.prototype.forEach.call(
+  document.querySelectorAll('a[href*="secure.wayforpay.com"]'),
+  function (link) {
+    link.addEventListener('click', function () {
+      if (typeof fbq === 'function') {
+        fbq('track', 'InitiateCheckout', { value: 530.00, currency: 'UAH', content_name: 'Енергія Процвітання' });
+      }
+    });
+  }
+);
 
 // Плаваюча кнопка: з'являється після першого екрана і ховається над блоком оплати
 var floatCta = document.getElementById('float-cta');
