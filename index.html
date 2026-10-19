@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="uk">
 <head>
 <meta charset="utf-8">
@@ -313,6 +313,31 @@ footer .wrap{padding-block:46px;display:flex;flex-direction:column;gap:26px}
   padding:5px 10px;border-radius:2px;cursor:pointer;
 }
 .copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ——— ПЛАВАЮЧА КНОПКА ——— */
+.float-cta{
+  position:fixed;z-index:40;
+  right:max(16px,env(safe-area-inset-right,0px));
+  bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  gap:12px;padding:15px 26px;font-size:14px;
+  box-shadow:0 14px 34px rgba(11,9,24,.38);
+  opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .28s ease,transform .28s ease,filter .18s ease;
+}
+.float-cta.show{opacity:1;transform:none;pointer-events:auto}
+.float-cta .sum{
+  font-family:var(--font-display);font-size:17px;font-weight:600;
+  letter-spacing:0;text-transform:none;line-height:1;
+  padding-left:12px;border-left:1px solid rgba(23,19,42,.3);
+}
+@media (max-width:560px){
+  .float-cta{
+    left:max(12px,env(safe-area-inset-left,0px));
+    right:max(12px,env(safe-area-inset-right,0px));
+    bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    justify-content:center;padding:16px 18px;
+  }
+}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -638,6 +663,10 @@ footer .wrap{padding-block:46px;display:flex;flex-direction:column;gap:26px}
   </div>
 </footer>
 
+<a class="btn float-cta" id="float-cta" href="https://secure.wayforpay.com/button/b87f1c5fbc5b7">
+  Отримати курс <span class="sum">530 грн</span>
+</a>
+
 <div id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Перегляд зображення">
   <button class="close" type="button" id="lb-close" aria-label="Закрити">✕</button>
   <img id="lb-img" src="" alt="">
@@ -684,6 +713,22 @@ function tick(){
 }
 tick();
 setInterval(tick, 1000);
+
+// Плаваюча кнопка: з'являється після першого екрана і ховається над блоком оплати
+var floatCta = document.getElementById('float-cta');
+var hero = document.querySelector('.hero');
+var offer = document.getElementById('kupyty');
+function syncCta(){
+  var h = hero.getBoundingClientRect();
+  var o = offer.getBoundingClientRect();
+  var heroGone = h.bottom < 60;
+  var offerOnScreen = o.bottom > 40 && o.top < window.innerHeight - 40;
+  if (heroGone && !offerOnScreen) { floatCta.classList.add('show'); }
+  else { floatCta.classList.remove('show'); }
+}
+window.addEventListener('scroll', syncCta, { passive: true });
+window.addEventListener('resize', syncCta);
+syncCta();
 
 // Лайтбокс для скриншотів відгуків і сертифіката
 var lb = document.getElementById('lightbox');
