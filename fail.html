@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Оплата не пройшла — Енергія Процвітання</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@300;500;600&family=Manrope:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#F4F2F7;--surface:#FFFFFF;--ink:#1C1833;--muted:#5E5880;
+  --line:rgba(28,24,51,.14);--accent:#9E6016;--accent-ink:#FFFFFF;
+  --font-display:"Spectral",Georgia,serif;--font-body:"Manrope","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121020;--surface:#1A1730;--ink:#ECE9F5;--muted:#A6A0C2;
+    --line:rgba(236,233,245,.15);--accent:#E7B45C;--accent-ink:#17132A;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121020;--surface:#1A1730;--ink:#ECE9F5;--muted:#A6A0C2;
+  --line:rgba(236,233,245,.15);--accent:#E7B45C;--accent-ink:#17132A;color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);
+  font-size:17px;line-height:1.62;min-height:100vh;display:flex;flex-direction:column;
+}
+main{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:24px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:clamp(60px,12vw,120px);
+}
+.seal{
+  width:84px;height:84px;border-radius:50%;border:1px solid var(--muted);
+  display:grid;place-items:center;color:var(--muted);font-size:34px;line-height:1;
+}
+h1{
+  font-family:var(--font-display);font-weight:300;margin:0;
+  font-size:clamp(32px,6vw,54px);line-height:1.08;max-width:17ch;text-wrap:balance;
+}
+p.lede{margin:0;color:var(--muted);max-width:42ch;font-size:clamp(17px,2.2vw,19px)}
+.btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:15px;
+  letter-spacing:.09em;text-transform:uppercase;text-decoration:none;
+  padding:17px 34px;border-radius:2px;
+}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:hover{filter:brightness(1.08)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.hint{font-size:14px;color:var(--muted);max-width:46ch;margin:0}
+footer{
+  border-top:1px solid var(--line);background:var(--surface);
+  padding-block:28px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  font-size:13.5px;color:var(--muted);text-align:center;
+}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+  <div class="seal" aria-hidden="true">!</div>
+  <h1>Оплата не пройшла</h1>
+  <p class="lede">Гроші не списані. Найчастіше причина проста: банк відхилив платіж або на картці немає потрібної суми. Спробуйте ще раз або іншою карткою.</p>
+  <div class="btns">
+    <a class="btn" href="https://secure.wayforpay.com/button/b87f1c5fbc5b7">Спробувати ще раз</a>
+    <a class="btn ghost" href="index.html">Повернутися на сайт</a>
+  </div>
+  <p class="hint">Якщо оплата не проходить і з другої спроби — напишіть мені на advocatpashnina@gmail.com або +380 50 452 13 92, і ми вирішимо це вручну.</p>
+</main>
+<footer>
+  ФОП Пашніна А. В. · ЄДРПОУ 2920803664 · м. Дніпро · +380 50 452 13 92 ·
+  <a href="index.html">на головну</a>
+</footer>
+</body>
+</html>

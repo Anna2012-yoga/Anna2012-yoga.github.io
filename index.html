@@ -1,0 +1,744 @@
+﻿<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Енергія Процвітання</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,500;0,600;1,300&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: одна вертикальна «доріжка» садхани — вузька колонка тексту, секції розділені тонкою золотою лінією, програма як пронумерований шлях на 21 день */
+:root{
+  --bg:#F4F2F7;
+  --surface:#FFFFFF;
+  --surface-2:#EDEAF3;
+  --ink:#1C1833;
+  --muted:#5E5880;
+  --line:rgba(28,24,51,.14);
+  --accent:#9E6016;
+  --accent-ink:#FFFFFF;
+  --halo:rgba(158,96,22,.12);
+  --font-display:"Spectral",Georgia,"Times New Roman",serif;
+  --font-body:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+  --step:clamp(56px,8vw,104px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#121020;
+    --surface:#1A1730;
+    --surface-2:#221E3C;
+    --ink:#ECE9F5;
+    --muted:#A6A0C2;
+    --line:rgba(236,233,245,.15);
+    --accent:#E7B45C;
+    --accent-ink:#17132A;
+    --halo:rgba(231,180,92,.14);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121020;
+  --surface:#1A1730;
+  --surface-2:#221E3C;
+  --ink:#ECE9F5;
+  --muted:#A6A0C2;
+  --line:rgba(236,233,245,.15);
+  --accent:#E7B45C;
+  --accent-ink:#17132A;
+  --halo:rgba(231,180,92,.14);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.band{width:100%}
+.wrap{
+  max-width:860px;
+  margin-inline:auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:var(--step);
+}
+.wrap.tight{max-width:720px}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+
+h1,h2,h3{font-family:var(--font-display);font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(40px,8.5vw,76px);line-height:1.02;letter-spacing:-.02em;font-weight:300}
+h2{font-size:clamp(28px,4.4vw,42px);line-height:1.12;letter-spacing:-.01em}
+h3{font-size:clamp(19px,2.4vw,22px);line-height:1.28;font-weight:600}
+p{margin:0}
+.lede{font-size:clamp(18px,2.3vw,21px);color:var(--muted);line-height:1.6}
+
+.eyebrow{
+  font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 18px;
+}
+.stack{display:flex;flex-direction:column;gap:20px}
+.stack-lg{display:flex;flex-direction:column;gap:38px}
+
+/* ——— HERO ——— */
+.hero{
+  position:relative;overflow:hidden;
+  background:#0B0918;
+  border-bottom:1px solid rgba(255,248,236,.16);
+  /* власна палітра: текст завжди світлий поверх нічного фото */
+  --ink:#FFF8EC;
+  --muted:rgba(255,248,236,.78);
+  --accent:#E7B45C;
+  --accent-ink:#17132A;
+  --line:rgba(255,248,236,.22);
+  --surface-2:rgba(255,248,236,.08);
+  color:var(--ink);
+}
+.hero-photo{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:58% 42%;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(11,9,24,.46) 0%,rgba(11,9,24,.2) 38%,rgba(11,9,24,.74) 100%);
+}
+.hero .wrap{
+  position:relative;z-index:2;
+  padding-block:clamp(64px,13vw,140px);
+  text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px;
+}
+.hero h1{max-width:12ch;text-shadow:0 2px 26px rgba(11,9,24,.85),0 1px 4px rgba(11,9,24,.55)}
+.hero .lede{max-width:34ch;margin-inline:auto;text-shadow:0 1px 14px rgba(11,9,24,.8)}
+.hero .kicker,.hero .price{text-shadow:0 1px 12px rgba(11,9,24,.8)}
+.hero-inner{display:flex;flex-direction:column;align-items:center;gap:26px}
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;
+  font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+}
+.kicker b{color:var(--accent);font-weight:700}
+.dot-sep{width:4px;height:4px;border-radius:50%;background:var(--accent);display:inline-block}
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  background:var(--accent);color:var(--accent-ink);
+  font-family:var(--font-body);font-weight:700;font-size:15px;
+  letter-spacing:.09em;text-transform:uppercase;text-decoration:none;
+  padding:17px 34px;border:0;border-radius:2px;cursor:pointer;
+  transition:transform .18s ease,filter .18s ease;
+}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn-ghost{
+  background:transparent;color:var(--ink);border:1px solid var(--line);
+}
+
+.price{display:flex;align-items:baseline;gap:12px;justify-content:center;flex-wrap:wrap}
+.price .now{font-family:var(--font-display);font-size:clamp(34px,6vw,52px);font-weight:600;line-height:1}
+.price .was{color:var(--muted);text-decoration:line-through;font-size:19px}
+.price .cut{
+  font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);border:1px solid var(--accent);border-radius:2px;padding:4px 9px;
+}
+
+/* ——— TIMER ——— */
+.timer{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.timer .cell{
+  min-width:74px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:2px;padding:12px 10px;
+}
+.timer .num{
+  font-family:var(--font-display);font-size:30px;font-weight:600;line-height:1;
+  font-variant-numeric:tabular-nums;display:block;
+}
+.timer .lab{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+.timer-note{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:center}
+
+/* ——— СПИСКИ ——— */
+.checks{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.checks li{
+  display:grid;grid-template-columns:26px 1fr;gap:14px;align-items:start;
+  padding-bottom:14px;border-bottom:1px solid var(--line);
+}
+.checks li:last-child{border-bottom:0;padding-bottom:0}
+.checks .mark{
+  width:26px;height:26px;border-radius:50%;border:1px solid var(--accent);
+  display:grid;place-items:center;color:var(--accent);font-size:13px;margin-top:3px;
+}
+
+/* ——— ПРОГРАМА ——— */
+.path{display:flex;flex-direction:column;gap:0;margin:0;padding:0;list-style:none}
+.lesson{
+  display:grid;grid-template-columns:108px 1fr;gap:26px;
+  padding-block:30px;border-top:1px solid var(--line);
+}
+.lesson:last-child{border-bottom:1px solid var(--line)}
+.lesson .meta{display:flex;flex-direction:column;gap:5px;min-width:0}
+.lesson .no{
+  font-family:var(--font-display);font-size:38px;line-height:1;font-weight:300;color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+.lesson .days{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lesson .body{min-width:0;display:flex;flex-direction:column;gap:10px}
+.lesson .body p{color:var(--muted);font-size:16px}
+.lesson.bonus .no{font-size:22px;letter-spacing:.1em;text-transform:uppercase;font-family:var(--font-body);font-weight:700}
+@media (max-width:620px){
+  .lesson{grid-template-columns:1fr;gap:12px}
+  .lesson .meta{flex-direction:row;align-items:baseline;gap:14px}
+  .lesson .no{font-size:28px}
+}
+
+/* ——— 21 ДЕНЬ ——— */
+.days-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;max-width:420px}
+.days-grid span{
+  aspect-ratio:1;display:grid;place-items:center;border-radius:50%;
+  border:1px solid var(--line);font-size:12px;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.days-grid span.first{border-color:var(--accent);color:var(--accent);font-weight:700}
+
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.facts div{background:var(--surface);padding:20px 18px;min-width:0}
+.facts dt{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.facts dd{margin:0;font-family:var(--font-display);font-size:26px;font-weight:600;line-height:1.1}
+.facts dd small{display:block;font-family:var(--font-body);font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:4px}
+
+/* ——— КАРТКИ ——— */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:2px;
+  padding:24px 22px;display:flex;flex-direction:column;gap:10px;min-width:0;
+}
+.card .q{font-family:var(--font-display);font-size:19px;font-weight:600;line-height:1.3}
+.card p{color:var(--muted);font-size:15.5px}
+.card.placeholder{border-style:dashed;background:transparent}
+.card.placeholder .q{color:var(--muted);font-style:italic;font-weight:500}
+
+/* ——— АВТОРКА ——— */
+.author{display:flex;flex-direction:column;align-items:center;gap:30px}
+.author .stack{max-width:62ch}
+.portrait{
+  width:300px;max-width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 28%;
+  border-radius:2px;border:1px solid var(--line);display:block;margin-inline:auto;
+}
+.center-head{align-items:center;text-align:center}
+.cert{
+  display:block;width:100%;max-width:100%;border:1px solid var(--line);border-radius:2px;
+  cursor:zoom-in;background:#fff;
+}
+.cert-wrap{display:flex;flex-direction:column;gap:8px;max-width:420px;margin:6px auto 0;text-align:center}
+.cert-wrap figcaption{font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:640px){.author{grid-template-columns:1fr;gap:22px}.portrait{max-width:240px}}
+
+/* фото авторки біля пунктів результату */
+.checks.with-photo li{grid-template-columns:58px 1fr;gap:18px;align-items:center}
+.avatar{
+  width:58px;height:58px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line);display:block;
+}
+
+/* ——— ГАЛЕРЕЯ ВІДГУКІВ ——— */
+.gallery{columns:3;column-gap:14px}
+@media (max-width:860px){.gallery{columns:2}}
+@media (max-width:520px){.gallery{columns:1}}
+.gallery button{
+  display:block;width:100%;padding:0;margin:0 0 14px;border:1px solid var(--line);
+  background:var(--surface);border-radius:2px;overflow:hidden;cursor:zoom-in;
+  break-inside:avoid;line-height:0;
+}
+.gallery button:hover{border-color:var(--accent)}
+.gallery button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.gallery img{width:100%;height:auto;display:block}
+
+/* ——— ЛАЙТБОКС ——— */
+#lightbox{
+  position:fixed;inset:0;z-index:50;background:rgba(9,7,20,.92);
+  display:flex;align-items:center;justify-content:center;
+  padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  cursor:zoom-out;
+}
+#lightbox[hidden]{display:none}
+#lightbox img{max-width:100%;max-height:100%;object-fit:contain;border-radius:2px;background:#fff}
+#lightbox .close{
+  position:absolute;top:max(12px,env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));
+  background:transparent;border:1px solid rgba(255,248,236,.4);color:#FFF8EC;
+  font-size:20px;line-height:1;width:40px;height:40px;border-radius:2px;cursor:pointer;
+}
+.creds{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.creds li{font-size:14.5px;color:var(--muted);padding-left:16px;position:relative}
+.creds li::before{content:"";position:absolute;left:0;top:.72em;width:6px;height:1px;background:var(--accent)}
+
+/* ——— ОФЕР ——— */
+.offer{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.offer .wrap{text-align:center;display:flex;flex-direction:column;align-items:center;gap:26px}
+.guarantee{
+  border:1px solid var(--accent);border-radius:2px;padding:26px 24px;
+  display:flex;flex-direction:column;gap:12px;text-align:left;
+}
+.guarantee .t{font-family:var(--font-display);font-size:22px;font-weight:600}
+.guarantee p{color:var(--muted);font-size:15.5px}
+
+/* ——— FAQ ——— */
+details{border-bottom:1px solid var(--line)}
+details summary{
+  cursor:pointer;list-style:none;padding:20px 36px 20px 0;position:relative;
+  font-weight:600;font-size:16.5px;
+}
+details summary::-webkit-details-marker{display:none}
+details summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details summary::after{
+  content:"+";position:absolute;right:4px;top:18px;color:var(--accent);font-size:22px;font-weight:400;line-height:1;
+}
+details[open] summary::after{content:"–"}
+details p{padding:0 0 20px;color:var(--muted);font-size:15.5px;max-width:62ch}
+
+/* ——— ФУТЕР ——— */
+footer{background:var(--surface-2);border-top:1px solid var(--line)}
+footer .wrap{padding-block:46px;display:flex;flex-direction:column;gap:26px}
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
+.foot-grid h4{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;font-weight:700;font-family:var(--font-body)}
+.foot-grid p,.foot-grid a{font-size:14.5px;color:var(--ink);text-decoration:none}
+.foot-grid a{display:block;border-bottom:1px solid transparent;width:fit-content}
+.foot-grid a:hover{border-bottom-color:var(--accent)}
+.legal{font-size:12px;line-height:1.6;color:var(--muted);max-width:none}
+.copy-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14.5px}
+.copy-btn{
+  background:transparent;border:1px solid var(--line);color:var(--muted);
+  font-family:var(--font-body);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 10px;border-radius:2px;cursor:pointer;
+}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<header class="band hero">
+  <img class="hero-photo" src="img/hero.webp" alt="" aria-hidden="true">
+  <div class="wrap">
+    <div class="hero-inner">
+      <p class="kicker">Кундаліні йога <span class="dot-sep"></span> <b id="start-date">Старт сьогодні</b> <span class="dot-sep"></span> 21 день</p>
+      <h1>Енергія Процвітання</h1>
+      <p class="lede">Сім медитацій, які прибирають внутрішні блоки на шляху до грошей, рішучості та спокою. 11 хвилин на день.</p>
+      <a class="btn" href="https://secure.wayforpay.com/button/b87f1c5fbc5b7">Отримати курс</a>
+      <div class="price">
+        <span class="now">530 грн</span>
+        <span class="was">1766 грн</span>
+        <span class="cut">−70%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap tight stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Кому це потрібно</p>
+      <h2>Ви робите багато — а результат стоїть на місці</h2>
+      <p class="lede">Найчастіше справа не в зусиллях, а в тому, що енергія йде на тривогу й сумніви. Курс повертає її туди, де вона приносить результат.</p>
+    </div>
+    <ul class="checks">
+      <li><span class="mark">◆</span><span>Ви відчуваєте, що заслуговуєте на більше, але рівень життя роками не змінюється.</span></li>
+      <li><span class="mark">◆</span><span>Думки про майбутнє — своє і близьких — викликають страх, а не цікавість.</span></li>
+      <li><span class="mark">◆</span><span>На мрії не вистачає ні сил, ні впевненості: вони лишаються списком у нотатках.</span></li>
+      <li><span class="mark">◆</span><span>Ви шукаєте вихід зі стресу й тривоги та спосіб знову почути себе.</span></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band">
+  <div class="wrap stack-lg">
+    <div class="stack center-head">
+      <p class="eyebrow">Авторка курсу</p>
+      <h2>Анна Пашніна</h2>
+    </div>
+    <div class="author">
+      <img class="portrait" src="img/anna.jpg" alt="Анна Пашніна, вчителька Кундаліні йоги">
+      <div class="stack">
+        <p>Через практики Кундаліні йоги я змінила власне життя — і побачила, наскільки швидко змінюється стан людини, коли вона вчиться керувати своєю енергією, а не боротися з нею.</p>
+        <p>Медитації Кундаліні йоги — це точний інструмент: конкретна поза, дихання, мантра й час виконання. Саме тому вони працюють однаково для тих, хто практикує роками, і для тих, хто сідає на килимок уперше.</p>
+        <ul class="creds">
+          <li>Сертифікована вчителька Кундаліні йоги за міжнародною програмою підготовки вчителів The Kundalini Research Institute (США)</li>
+          <li>Сертифікат інструкторки йоги — Кундаліні, Хатха, Віньяса — Escuela de Fitness y técnicas manuales «Enseñanza Orthos» (Барселона, Іспанія)</li>
+        </ul>
+        <figure class="cert-wrap">
+          <img class="cert" src="img/kri.jpg" alt="Сертифікат Level One Instructor, The Kundalini Research Institute, на ім'я Anna Pashnina — Taj Vedya Kaur" data-zoom>
+          <figcaption>Level One Instructor Certificate, KRI — 220 годин, лютий 2024</figcaption>
+        </figure>
+        <figure class="cert-wrap">
+          <img class="cert" src="img/cert-es.jpg" alt="Certificado de Profesionalidad de Instrucción en Yoga на ім'я Anna Pashnina, Generalitat de Catalunya" data-zoom>
+          <figcaption>Certificat de professionalitat d'instrucció en ioga, рівень 3 — Generalitat de Catalunya, Барселона, травень 2025</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band">
+  <div class="wrap stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Як це влаштовано</p>
+      <h2>21 день, сім медитацій, по три дні на кожну</h2>
+      <p class="lede">Класичний ритм садхани: одна практика повторюється три дні поспіль, щоб тіло й свідомість встигли на неї відгукнутися.</p>
+    </div>
+
+    <div class="days-grid" role="img" aria-label="21 день курсу, розділені на сім блоків по три дні">
+      <span class="first">1</span><span>2</span><span>3</span>
+      <span class="first">4</span><span>5</span><span>6</span>
+      <span class="first">7</span><span>8</span><span>9</span>
+      <span class="first">10</span><span>11</span><span>12</span>
+      <span class="first">13</span><span>14</span><span>15</span>
+      <span class="first">16</span><span>17</span><span>18</span>
+      <span class="first">19</span><span>20</span><span>21</span>
+    </div>
+
+    <dl class="facts">
+      <div><dt>Щодня</dt><dd>11–20 хв<small>у зручний вам час</small></dd></div>
+      <div><dt>Платформа</dt><dd>Telegram<small>доступ одразу після оплати</small></dd></div>
+      <div><dt>Доступ</dt><dd>3 місяці<small>проходити можна повторно</small></dd></div>
+      <div><dt>Фінал</dt><dd>Зустріч 1:1<small>онлайн, за вашим запитом</small></dd></div>
+    </dl>
+
+    <p class="lede">Наприкінці курсу я запрошу вас на особисту онлайн-зустріч: на основі практик Кундаліні йоги та вашого запиту ми складемо персональну стратегію — що практикувати далі й у якому порядку.</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band">
+  <div class="wrap stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Програма</p>
+      <h2>Шлях на 21 день</h2>
+    </div>
+    <ul class="path">
+      <li class="lesson bonus">
+        <div class="meta"><span class="no">Вступ</span><span class="days">перед стартом</span></div>
+        <div class="body">
+          <h3>Що таке Кундаліні йога</h3>
+          <p>Чому її називають королівською практикою і чим вона відрізняється від інших напрямів йоги. Як виконувати медитації, щоб вони працювали.</p>
+        </div>
+      </li>
+      <li class="lesson">
+        <div class="meta"><span class="no">01</span><span class="days">Дні 1–3</span></div>
+        <div class="body">
+          <h3>Очищення підсвідомості від страхів</h3>
+          <p>Медитація дістає накопичений негатив, страхи та емоційні блоки, які стримують рух уперед, і звільняє місце для змін.</p>
+        </div>
+      </li>
+      <li class="lesson">
+        <div class="meta"><span class="no">02</span><span class="days">Дні 4–6</span></div>
+        <div class="body">
+          <h3>Подолання негативного ставлення до себе</h3>
+          <p>Допомагає побачити вкорінені переконання про себе, заспокоїти розум і замінити руйнівні думки на ті, що дають опору.</p>
+        </div>
+      </li>
+      <li class="lesson">
+        <div class="meta"><span class="no">03</span><span class="days">Дні 7–9</span></div>
+        <div class="body">
+          <h3>Удача, процвітання та усунення перешкод</h3>
+          <p>Активує рух енергії в тілі, підсилює інтуїцію й знімає підсвідомі обмеження, через які ви не помічаєте власних можливостей.</p>
+        </div>
+      </li>
+      <li class="lesson">
+        <div class="meta"><span class="no">04</span><span class="days">Дні 10–12</span></div>
+        <div class="body">
+          <h3>Посилення інтуїції</h3>
+          <p>Працює з ділянками мозку та енергетичними каналами, відповідальними за внутрішнє чуття. Рішення починають даватися швидше.</p>
+        </div>
+      </li>
+      <li class="lesson">
+        <div class="meta"><span class="no">05</span><span class="days">Дні 13–15</span></div>
+        <div class="body">
+          <h3>Жіноча енергія, чутливість і внутрішня сила</h3>
+          <p>Поглиблює зв'язок із власною жіночою сутністю та здатність приймати ресурси — від грошей до підтримки інших людей.</p>
+        </div>
+      </li>
+      <li class="lesson">
+        <div class="meta"><span class="no">06</span><span class="days">Дні 16–18</span></div>
+        <div class="body">
+          <h3>Залучення ресурсів і можливостей</h3>
+          <p>Зміцнює енергетичне поле, яке взаємодіє зі світом навколо, і допомагає бачити нові шляхи до фінансової стабільності.</p>
+        </div>
+      </li>
+      <li class="lesson">
+        <div class="meta"><span class="no">07</span><span class="days">Дні 19–21</span></div>
+        <div class="body">
+          <h3>Медитація-афірмація «Керівництво для життя»</h3>
+          <p>Збирає результат курсу разом: ясність мислення, зосередженість і емоційний баланс як щоденний стан, а не рідкісний гість.</p>
+        </div>
+      </li>
+      <li class="lesson bonus">
+        <div class="meta"><span class="no">Бонус</span><span class="days">коли забажаєте</span></div>
+        <div class="body">
+          <h3>Спеціальна медитація для здійснення бажання</h3>
+          <p>Окрема практика, яку можна виконувати будь-коли протягом трьох місяців доступу.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band">
+  <div class="wrap tight stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Результат</p>
+      <h2>Що ви забираєте із собою</h2>
+    </div>
+    <ul class="checks with-photo">
+      <li><img class="avatar" src="img/p1.jpg" alt=""><span><b>Нові можливості для доходу</b> — ви починаєте помічати й використовувати те, що раніше проходило повз.</span></li>
+      <li><img class="avatar" src="img/p2.jpg" alt=""><span><b>Інтуїцію, якій можна довіряти</b> — рішення даються швидше і без нескінченного прокручування варіантів.</span></li>
+      <li><img class="avatar" src="img/p3.jpg" alt=""><span><b>Звільнення від емоційних блоків</b>, які тримали вас на одному рівні життя.</span></li>
+      <li><img class="avatar" src="img/p4.jpg" alt=""><span><b>Енергію та впевненість</b> — сили, яких вистачає не лише на обов'язки, а й на власні цілі.</span></li>
+      <li><img class="avatar" src="img/p5.jpg" alt=""><span><b>Внутрішній спокій</b>, який видно у стосунках із близькими й у роботі.</span></li>
+    </ul>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band">
+  <div class="wrap stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Відгуки</p>
+      <h2>Що кажуть учасниці</h2>
+      <p class="lede">Скриншоти реальних повідомлень і коментарів — їх можна перевірити. Натисніть, щоб збільшити.</p>
+    </div>
+    <div class="gallery">
+      <button type="button" data-zoom-src="img/r1.jpg"><img src="img/r1.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r2.jpg"><img src="img/r2.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r3.jpg"><img src="img/r3.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r4.jpg"><img src="img/r4.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r5.jpg"><img src="img/r5.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r6.jpg"><img src="img/r6.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r7.jpg"><img src="img/r7.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r8.png"><img src="img/r8.png" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r9.jpg"><img src="img/r9.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+      <button type="button" data-zoom-src="img/r10.jpg"><img src="img/r10.jpg" alt="Відгук учасниці курсу" loading="lazy"></button>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section class="band offer" id="kupyty">
+  <div class="wrap stack-lg">
+    <div class="stack" style="align-items:center;text-align:center">
+      <p class="eyebrow">Спеціальна ціна</p>
+      <h2>Приєднатися до курсу</h2>
+      <div class="price">
+        <span class="now">530 грн</span>
+        <span class="was">1766 грн</span>
+        <span class="cut">−70%</span>
+      </div>
+      <p class="timer-note" id="timer-note">До кінця акції</p>
+      <div class="timer" id="timer" aria-live="off">
+        <div class="cell"><span class="num" id="t-h">03</span><span class="lab">годин</span></div>
+        <div class="cell"><span class="num" id="t-m">00</span><span class="lab">хвилин</span></div>
+        <div class="cell"><span class="num" id="t-s">00</span><span class="lab">секунд</span></div>
+      </div>
+      <a class="btn" href="https://secure.wayforpay.com/button/b87f1c5fbc5b7" id="buy">Купити курс зі знижкою</a>
+      <p style="color:var(--muted);font-size:14.5px;max-width:46ch">Оплата через WayForPay — картка Visa або Mastercard. Одразу після оплати ви отримуєте доступ до курсу в Telegram.</p>
+    </div>
+
+    <div class="guarantee">
+      <p class="t">Гарантія: 14 днів на рішення</p>
+      <p>Пройдіть курс і зануртеся в кожну практику. Якщо за 14 днів ви не відчуєте жодних змін — я поверну оплату повністю, без зайвих запитань.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap tight stack-lg">
+    <div class="stack">
+      <p class="eyebrow">Питання</p>
+      <h2>Коротко про головне</h2>
+    </div>
+    <div>
+      <details open>
+        <summary>Скільки триває курс?</summary>
+        <p>21 день — сім медитацій по три дні кожна. Проходити можна у зручний час, доступ до матеріалів лишається на 3 місяці.</p>
+      </details>
+      <details>
+        <summary>Чи потрібен попередній досвід у йозі?</summary>
+        <p>Ні. Курс підходить і новачкам, і тим, хто практикує давно: спеціальна фізична підготовка не потрібна, кожна практика пояснюється з нуля.</p>
+      </details>
+      <details>
+        <summary>Скільки часу на день це займає?</summary>
+        <p>Від 11 до 20 хвилин щодня. Головне — не тривалість, а регулярність три дні поспіль для кожної медитації.</p>
+      </details>
+      <details>
+        <summary>Які саме техніки використовуються?</summary>
+        <p>Основа — медитації Кундаліні йоги: певне положення тіла й рук, дихальні вправи (пранаяма) та мантри, які активують енергію процвітання.</p>
+      </details>
+      <details>
+        <summary>Чи можна підлаштувати курс під свій графік?</summary>
+        <p>Так. Час виконання обираєте самі, але послідовності медитацій краще дотримуватися — вона побудована від очищення до залучення ресурсів.</p>
+      </details>
+      <details>
+        <summary>Коли з'являться перші результати?</summary>
+        <p>Зміну стану більшість помічає вже після першої практики. Стійкі зміни проявляються протягом 21 дня.</p>
+      </details>
+      <details>
+        <summary>Чи є рекомендації щодо способу життя?</summary>
+        <p>На час курсу варто обмежити алкоголь і будь-які психоактивні речовини — вони збивають ефект практик.</p>
+      </details>
+      <details>
+        <summary>Як курс впливає на самопочуття?</summary>
+        <p>Практики знижують рівень стресу, стабілізують нервову та ендокринну системи, покращують сон і підвищують загальний рівень енергії.</p>
+      </details>
+      <details>
+        <summary>Чи буде підтримка інструктора або групи?</summary>
+        <p>Окремого супроводу немає: всі техніки пояснені покроково. Запитання можна поставити в моєму Instagram або Telegram, де я регулярно розповідаю про Кундаліні йогу.</p>
+      </details>
+      <details>
+        <summary>Що потрібно для занять?</summary>
+        <p>Лише затишне місце, де вас не потурбують, і телефон чи ноутбук. Спеціальне обладнання не потрібне.</p>
+      </details>
+      <details>
+        <summary>А якщо курс не підійде?</summary>
+        <p>У вас є 14 днів, щоб вирішити. Якщо зрозумієте, що це не ваше, — ми повернемо гроші без зайвих запитань.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Реквізити</h4>
+        <p>ФОП Пашніна А. В.<br>ЄДРПОУ 2920803664<br>49000, Україна, м. Дніпро</p>
+      </div>
+      <div>
+        <h4>Контакти</h4>
+        <div class="copy-row"><span id="phone">+380 50 452 13 92</span><button class="copy-btn" data-copy="#phone" type="button">Копіювати</button></div>
+        <div class="copy-row"><span id="mail">advocatpashnina@gmail.com</span><button class="copy-btn" data-copy="#mail" type="button">Копіювати</button></div>
+      </div>
+      <div>
+        <h4>Документи</h4>
+        <a href="politika.html">Політика конфіденційності</a>
+        <a href="oferta.html">Публічна оферта</a>
+      </div>
+    </div>
+    <hr class="rule">
+    <p class="legal"><b>Важливо:</b> не залишайте свої контактні дані, доки не прочитаєте цей текст. Ми не даємо жодних гарантій фінансових чи інших результатів від використання наших матеріалів, інструментів чи стратегій. Усі продукти та сервіси призначені для освітніх та інформаційних цілей. Жодна інформація на цьому сайті не є обіцянкою чи гарантією результату. Ви несете відповідальність за власні рішення, дії та їхні наслідки. Курс не є медичною послугою й не замінює консультацію лікаря.</p>
+    <p class="legal">© ФОП Пашніна А. В. Будь-яке копіювання матеріалів — лише за погодженням із правовласником.</p>
+  </div>
+</footer>
+
+<div id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Перегляд зображення">
+  <button class="close" type="button" id="lb-close" aria-label="Закрити">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+// Дата старту — завжди сьогоднішня, оновлюється щодня
+var MONTHS = ['січня','лютого','березня','квітня','травня','червня',
+              'липня','серпня','вересня','жовтня','листопада','грудня'];
+var startEl = document.getElementById('start-date');
+function renderStart(){
+  var d = new Date();
+  startEl.textContent = 'Старт ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+}
+renderStart();
+setInterval(renderStart, 60000);
+
+// Таймер акції: 3 години від першого відкриття сторінки
+var DURATION = 3 * 60 * 60 * 1000;
+var KEY = 'ep_offer_deadline';
+var el = {
+  h: document.getElementById('t-h'),
+  m: document.getElementById('t-m'),
+  s: document.getElementById('t-s')
+};
+function pad(n){ return n < 10 ? '0' + n : '' + n; }
+function readDeadline(){
+  var v = null;
+  try { v = parseInt(localStorage.getItem(KEY), 10); } catch (e) { v = null; }
+  if (!v || isNaN(v) || v <= Date.now() || v - Date.now() > DURATION) {
+    v = Date.now() + DURATION;
+    try { localStorage.setItem(KEY, String(v)); } catch (e) {}
+  }
+  return v;
+}
+var deadline = readDeadline();
+function tick(){
+  var left = deadline - Date.now();
+  if (left <= 0) { deadline = readDeadline(); left = deadline - Date.now(); }
+  var s = Math.floor(left / 1000);
+  el.h.textContent = pad(Math.floor(s / 3600));
+  el.m.textContent = pad(Math.floor(s / 60) % 60);
+  el.s.textContent = pad(s % 60);
+}
+tick();
+setInterval(tick, 1000);
+
+// Лайтбокс для скриншотів відгуків і сертифіката
+var lb = document.getElementById('lightbox');
+var lbImg = document.getElementById('lb-img');
+var lastFocus = null;
+function openLb(src, alt){
+  lbImg.src = src;
+  lbImg.alt = alt || '';
+  lb.hidden = false;
+  lb.style.display = 'flex';
+  document.getElementById('lb-close').focus();
+}
+function closeLb(){
+  lb.hidden = true;
+  lb.style.display = '';
+  lbImg.src = '';
+  if (lastFocus) lastFocus.focus();
+}
+Array.prototype.forEach.call(document.querySelectorAll('[data-zoom-src]'), function (b) {
+  b.addEventListener('click', function () {
+    lastFocus = b;
+    var im = b.querySelector('img');
+    openLb(b.getAttribute('data-zoom-src'), im ? im.alt : '');
+  });
+});
+Array.prototype.forEach.call(document.querySelectorAll('img[data-zoom]'), function (im) {
+  im.addEventListener('click', function () { lastFocus = null; openLb(im.src, im.alt); });
+});
+lb.addEventListener('click', closeLb);
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lb.hidden) closeLb(); });
+
+Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
+  btn.addEventListener('click', function () {
+    var node = document.querySelector(btn.getAttribute('data-copy'));
+    var text = node.textContent.trim();
+    var done = function () {
+      var old = btn.textContent;
+      btn.textContent = 'Скопійовано';
+      setTimeout(function () { btn.textContent = old; }, 1600);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { select(node); });
+    } else {
+      select(node);
+    }
+  });
+});
+function select(node){
+  var r = document.createRange();
+  r.selectNodeContents(node);
+  var sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(r);
+}
+</script>
+
+</body>
+</html>
