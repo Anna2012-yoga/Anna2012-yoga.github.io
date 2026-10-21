@@ -80,7 +80,7 @@ img{max-width:100%;height:auto;display:block}
 
 .lead-text + .lead-text{margin-top:14px}
 
-.lead-cta{padding:45px 0}
+.lead-cta{padding:45px 0;display:flex;justify-content:center}
 
 @media (max-width:900px){
   .lead-title{font-size:30px}
