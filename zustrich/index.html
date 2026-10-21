@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Індивідуальна онлайн-зустріч</title>
+<meta name="description" content="Безоплатна індивідуальна онлайн-зустріч: персоналізована стратегія змін на основі практик Кундаліні йоги.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Індивідуальна онлайн-зустріч">
+<meta property="og:description" content="Безоплатна індивідуальна онлайн-зустріч: персоналізована стратегія змін на основі практик Кундаліні йоги.">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======================= Лендинг ======================= -->
+<main class="page">
+  <div class="container">
+    <div class="content">
+
+      <h1 class="lead-title reveal">Мрієш змінити своє життя?</h1>
+
+      <p class="lead-text lead-text--strong reveal">Якщо ти готова розібратися з тим, що забирає в тебе найбільше енергії, що стримує тебе, що не дає тобі зробити перший крок до бажаних змін у будь-якій сфері життя (здоров'я, фінанси, самореалізація, відносини) — ця онлайн-зустріч саме для тебе!</p>
+
+      <p class="lead-text reveal">Це не просто розмова — це можливість безоплатно отримати чіткий покроковий план, який допоможе тобі.</p>
+
+      <p class="lead-text reveal">На основі практик Кундаліні йоги та твого запиту я допоможу створити для тебе персоналізовану стратегію, яка допоможе змінити життя на краще!</p>
+
+      <div class="lead-cta reveal">
+        <button type="button" class="btn btn--lg" data-open-quiz>ХОЧУ НА ОНЛАЙН-ЗУСТРІЧ</button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<!-- ======================= Квіз ======================= -->
+<div class="popup" id="quiz" role="dialog" aria-modal="true" aria-label="Запис на онлайн-зустріч" hidden>
+  <button type="button" class="popup__close" data-close-quiz aria-label="Закрити">
+    <svg viewBox="0 0 14 14" width="14" height="14" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="m12.4 0 1.378 1.392-5.442 5.496L14 12.608 12.622 14 6.958 8.28l-5.58 5.636L0 12.524l5.58-5.636L.222 1.476 1.6.084l5.358 5.412L12.4 0Z"/>
+    </svg>
+  </button>
+
+  <div class="popup__panel">
+    <div class="quiz__progress" aria-hidden="true"><div class="quiz__progress-bar" id="quizProgress"></div></div>
+
+    <form class="quiz" id="quizForm" novalidate>
+      <div class="quiz__body" id="quizBody">
+
+        <!-- Крок 0 — обкладинка -->
+        <section class="step step--cover is-active" data-step="cover">
+          <div class="step__cover-inner">
+            <h2 class="cover__title">Дізнайся,<br>як відчувати себе більш енергійною,<br>як стати більш проявленою,<br>знайти внутрішню силу,<br>реалізувати свої мрії та нарешті<br>змінити своє життя на краще 💫</h2>
+            <p class="cover__descr">Натискайте на кнопку нижче, дай відповідь на кілька питань:</p>
+            <button type="button" class="btn btn--md btn--arrow" data-next>ХОЧУ НА ОНЛАЙН-ЗУСТРІЧ</button>
+          </div>
+        </section>
+
+        <!-- Крок 1 -->
+        <section class="step" data-step="q" data-field="Problema" data-required="1">
+          <h2 class="step__title" id="t-problema">Яка проблема зараз для вас найбільш актуальна?</h2>
+          <div class="options" role="radiogroup" aria-labelledby="t-problema">
+            <label class="option"><input type="radio" name="Problema" value="Низький рівень енергії, проблеми зі сном"><span class="option__dot"></span><span class="option__text">Низький рівень енергії, проблеми зі сном</span></label>
+            <label class="option"><input type="radio" name="Problema" value="Самореалізація"><span class="option__dot"></span><span class="option__text">Самореалізація</span></label>
+            <label class="option"><input type="radio" name="Problema" value="Відносини"><span class="option__dot"></span><span class="option__text">Відносини</span></label>
+            <label class="option"><input type="radio" name="Problema" value="Фінансова"><span class="option__dot"></span><span class="option__text">Фінансова</span></label>
+          </div>
+          <p class="step__error" aria-live="polite"></p>
+        </section>
+
+        <!-- Крок 2 -->
+        <section class="step" data-step="q" data-field="Sproby" data-required="1">
+          <h2 class="step__title" id="t-sproby">Чи були у вас вже спроби вирішити цю проблему?</h2>
+          <div class="options" role="radiogroup" aria-labelledby="t-sproby">
+            <label class="option"><input type="radio" name="Sproby" value="Так, кілька разів"><span class="option__dot"></span><span class="option__text">Так, кілька разів</span></label>
+            <label class="option"><input type="radio" name="Sproby" value="Ні, але думав(ла)"><span class="option__dot"></span><span class="option__text">Ні, але думав(ла)</span></label>
+            <label class="option"><input type="radio" name="Sproby" value="Ні, і не думав(ла)"><span class="option__dot"></span><span class="option__text">Ні, і не думав(ла)</span></label>
+          </div>
+          <p class="step__error" aria-live="polite"></p>
+        </section>
+
+        <!-- Крок 3 -->
+        <section class="step" data-step="q" data-field="Bolyt" data-required="1">
+          <h2 class="step__title" id="t-bolyt">Чому це важливо для вас зараз? На скільки це болить від 0 до 10?</h2>
+          <div class="rate" role="radiogroup" aria-labelledby="t-bolyt">
+            <label class="rate__item"><input type="radio" name="Bolyt" value="0"><span>0</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="1"><span>1</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="2"><span>2</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="3"><span>3</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="4"><span>4</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="5"><span>5</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="6"><span>6</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="7"><span>7</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="8"><span>8</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="9"><span>9</span></label>
+            <label class="rate__item"><input type="radio" name="Bolyt" value="10"><span>10</span></label>
+          </div>
+          <div class="rate__legend"><span>Не болить</span><span>Дуже болить</span></div>
+          <p class="step__error" aria-live="polite"></p>
+        </section>
+
+        <!-- Крок 4 -->
+        <section class="step" data-step="q" data-field="Groshi" data-required="1">
+          <h2 class="step__title" id="t-groshi">Чи готові ви вкладати ресурси (час, гроші) для вирішення своєї проблеми?</h2>
+          <div class="options options--filled" role="radiogroup" aria-labelledby="t-groshi">
+            <label class="option"><input type="radio" name="Groshi" value="Не готов(а) інвестувати гроші і час у своє благополуччя"><span class="option__dot"></span><span class="option__text">Не готов(а) інвестувати гроші і час у своє благополуччя</span></label>
+            <label class="option"><input type="radio" name="Groshi" value="Готова інвестувати до $250"><span class="option__dot"></span><span class="option__text">Готова інвестувати до $250</span></label>
+            <label class="option"><input type="radio" name="Groshi" value="Готов(а) інвестувати будь-яку суму грошей, важливий результат"><span class="option__dot"></span><span class="option__text">Готов(а) інвестувати будь-яку суму грошей, важливий результат</span></label>
+          </div>
+          <p class="step__error" aria-live="polite"></p>
+        </section>
+
+        <!-- Крок 5 — ховається, якщо не готова інвестувати -->
+        <section class="step" data-step="q" data-field="Resultat" data-required="1"
+                 data-hide-if-groshi="Не готов(а) інвестувати гроші і час у своє благополуччя">
+          <h2 class="step__title"><label for="f-resultat">Яким би був для вас ідеальний результат нашої зустрічі? Чи хотіли б отримати індивідуальний покроковий план дій як досягти результату?</label></h2>
+          <input type="text" id="f-resultat" name="Resultat" class="field" placeholder="Напишіть ідеальний результат нашої зустрічі" autocomplete="off">
+          <p class="step__error" aria-live="polite"></p>
+        </section>
+
+        <!-- Крок 6 — контакти, лише для готових інвестувати -->
+        <section class="step step--contacts" data-step="contacts"
+                 data-show-if-groshi="Готова інвестувати до $250|Готов(а) інвестувати будь-яку суму грошей, важливий результат">
+          <h2 class="step__title">Заповніть форму та оберіть в Телеграмі зручний час онлайн-зустрічі</h2>
+          <div class="fields">
+            <div class="field-row">
+              <input type="text" name="Name" class="field" placeholder="Ваше ім'я" autocomplete="name" data-rule="name">
+              <p class="step__error" aria-live="polite"></p>
+            </div>
+            <div class="field-row">
+              <input type="tel" name="Phone" class="field" placeholder="+380 00 000 00 00" autocomplete="tel" data-rule="phone">
+              <p class="step__error" aria-live="polite"></p>
+            </div>
+            <div class="field-row">
+              <input type="text" name="Telegram" class="field" placeholder="Ваш нік в Телеграмі, @" autocomplete="off" data-rule="telegram">
+              <p class="step__error" aria-live="polite"></p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Результат A — готова інвестувати -->
+        <section class="step step--result" data-step="resultA">
+          <div class="result">
+            <div class="result__text">
+              <h2 class="result__title">Дякую! Заявку прийнято 🙌</h2>
+              <p class="result__descr">Переходь у Telegram — там оберемо зручний час нашої зустрічі.</p>
+              <a class="btn btn--md" id="resultAlink" href="https://t.me/m/9HRGKk6vMGRi">ПЕРЕЙТИ В TELEGRAM</a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Результат Б — не готова інвестувати -->
+        <section class="step step--result" data-step="resultB">
+          <div class="result result--split">
+            <div class="result__text">
+              <h2 class="result__title">Для вирішення твоєї проблеми я підготувала спеціальний безкоштовний відеоурок</h2>
+              <p class="result__descr">Який допоможе тобі розібратися з основними причинами напруги та знайти прості й ефективні способи відновлення внутрішнього спокою.</p>
+              <a class="btn btn--md" href="https://t.me/RespirarBot?start=hwoVmbh52QyegOra">ЗАБРАТИ УРОК</a>
+            </div>
+            <div class="result__img"><img src="img/lesson.png" alt="" width="642" height="720" loading="lazy"></div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Навігація -->
+      <div class="quiz__footer" id="quizFooter" hidden>
+        <button type="button" class="btn btn--ghost" data-prev aria-label="Назад">
+          <svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true" focusable="false">
+            <path d="M14.25 9H3.75M9 3.75 3.75 9 9 14.25" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" class="btn btn--md btn--arrow" data-next>Далі</button>
+        <button type="submit" class="btn btn--md" data-submit hidden>Записатись</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="quiz.js"></script>
+</body>
+</html>

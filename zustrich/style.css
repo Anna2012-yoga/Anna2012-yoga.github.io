@@ -1,0 +1,400 @@
+/* ===== Токени ===== */
+:root{
+  --accent:#f7b400;
+  --accent-soft:rgba(247,180,0,.2);
+  --accent-border:#ffe8aa;
+  --on-accent:#232323;
+  --field-bg:#f5f5f5;
+  --text:#000;
+  --muted:#6b6b6b;
+  --error:#d4342b;
+  --radius:4px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:#fff;
+  color:var(--text);
+  font-family:'Manrope',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  font-weight:400;
+  line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{max-width:100%;height:auto;display:block}
+
+/* ===== Сітка лендингу (відтворює t-col_10 t-prefix_1) ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.content{width:83.333%;margin-left:8.333%}
+
+@media (max-width:960px){
+  .content{width:100%;margin-left:0}
+}
+
+.page{padding:30px 0 45px}
+
+/* ===== Поява без прив'язки до скролу =====
+   На Tilda ці блоки з'являлися тільки під час прокрутки. Сторінка вміщалася
+   в один екран, прокрутки не було — і текст з кнопкою залишалися невидимими.
+   Тут анімація запускається від завантаження сторінки. */
+.reveal{
+  opacity:0;
+  transform:translateY(12px);
+  animation:reveal .5s ease-out forwards;
+}
+.reveal:nth-child(1){animation-delay:.05s}
+.reveal:nth-child(2){animation-delay:.14s}
+.reveal:nth-child(3){animation-delay:.23s}
+.reveal:nth-child(4){animation-delay:.32s}
+.reveal:nth-child(5){animation-delay:.41s}
+
+@keyframes reveal{to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{animation:none;opacity:1;transform:none}
+}
+
+/* ===== Текст лендингу ===== */
+.lead-title{
+  margin:0;
+  padding:0 0 15px;
+  font-size:52px;
+  line-height:1.2;
+  font-weight:300;
+  letter-spacing:-.01em;
+}
+
+.lead-text{
+  margin:0;
+  padding:0;
+  font-size:20px;
+  line-height:1.4;
+  font-weight:400;
+}
+
+.lead-text--strong{font-weight:700;padding:15px 0}
+
+.lead-text + .lead-text{margin-top:14px}
+
+.lead-cta{padding:45px 0}
+
+@media (max-width:900px){
+  .lead-title{font-size:30px}
+}
+@media (max-width:480px){
+  .page{padding:24px 0 36px}
+  .lead-title{font-size:30px}
+  .lead-text{font-size:18px}
+  .lead-cta{padding:32px 0}
+}
+
+/* ===== Кнопки ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:0;
+  border-radius:var(--radius);
+  background:var(--accent);
+  color:var(--on-accent);
+  font-family:inherit;
+  font-weight:600;
+  text-decoration:none;
+  text-align:center;
+  cursor:pointer;
+  transition:background-color .2s ease-in-out,color .2s ease-in-out,border-color .2s ease-in-out,opacity .2s ease-in-out;
+}
+.btn[hidden]{display:none}
+.btn:hover{background:#e5a600}
+.btn:active{transform:translateY(1px)}
+.btn:focus-visible{outline:2px solid #232323;outline-offset:3px}
+
+.btn--lg{
+  padding:15px 40px;
+  font-size:22px;
+  line-height:1.4;
+  font-weight:500;
+  border-radius:5px;
+}
+
+.btn--md{
+  padding:13px 28px;
+  font-size:16px;
+  line-height:1.4;
+}
+
+.btn--ghost{
+  padding:10px 14px;
+  background:transparent;
+  color:var(--accent);
+  border:1px solid var(--accent-border);
+}
+.btn--ghost:hover{background:#fffaf0}
+
+/* стрілка праворуч від тексту */
+.btn--arrow::after{
+  content:"";
+  width:18px;height:18px;
+  flex:0 0 18px;
+  background:currentColor;
+  -webkit-mask:var(--arrow) center/contain no-repeat;
+  mask:var(--arrow) center/contain no-repeat;
+  --arrow:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M3.75 9h10.5M9 14.25 14.25 9 9 3.75' fill='none' stroke='%23000' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+@media (max-width:480px){
+  .btn--lg{font-size:18px;padding:14px 24px;width:100%}
+}
+
+/* ===== Попап ===== */
+.popup{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:rgba(0,0,0,.8);
+  overflow:auto;
+}
+.popup[hidden]{display:none}
+
+.popup__close{
+  position:absolute;
+  top:20px;right:20px;
+  width:40px;height:40px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#fff;
+  cursor:pointer;
+  opacity:.8;
+}
+.popup__close:hover{opacity:1}
+.popup__close:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+.popup__panel{
+  position:relative;
+  width:100%;
+  max-width:980px;
+  background:#fff;
+  border-radius:var(--radius);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+}
+
+/* ===== Квіз ===== */
+.quiz{display:flex;flex-direction:column;min-height:0;flex:1}
+
+.quiz__progress{height:4px;background:var(--accent-soft)}
+.quiz__progress-bar{
+  height:100%;width:0;
+  background:var(--accent);
+  transition:width .3s ease-in-out;
+}
+
+.quiz__body{
+  flex:1;
+  min-height:520px;
+  display:flex;
+  padding:40px;
+}
+
+.step{display:none;width:100%;flex-direction:column;justify-content:center}
+.step.is-active{display:flex;animation:stepIn .25s ease-out}
+
+@keyframes stepIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .step.is-active{animation:none}
+}
+
+.step__title{
+  margin:0 0 24px;
+  font-size:20px;
+  line-height:1.3;
+  font-weight:600;
+}
+.step__title label{cursor:pointer}
+
+.step__error{
+  margin:10px 0 0;
+  min-height:18px;
+  font-size:14px;
+  line-height:1.3;
+  color:var(--error);
+}
+
+/* Обкладинка */
+.step--cover{align-items:center;text-align:center}
+.step__cover-inner{max-width:640px}
+.cover__title{
+  margin:0 0 16px;
+  font-size:32px;
+  line-height:1.25;
+  font-weight:600;
+}
+.cover__descr{
+  margin:0 0 28px;
+  font-size:20px;
+  line-height:1.4;
+  font-weight:500;
+}
+
+@media (max-width:600px){
+  .cover__title{font-size:24px}
+  .cover__descr{font-size:17px}
+}
+
+/* Варіанти відповідей */
+.options{display:flex;flex-direction:column;gap:10px}
+
+.option{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 16px;
+  border:1px solid transparent;
+  border-radius:var(--radius);
+  font-size:16px;
+  line-height:1.3;
+  cursor:pointer;
+  transition:background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+.option:hover{background:#fafafa}
+.options--filled .option{background:var(--field-bg)}
+.options--filled .option:hover{background:#efefef}
+
+.option input{position:absolute;opacity:0;width:0;height:0}
+
+.option__dot{
+  position:relative;
+  flex:0 0 20px;
+  width:20px;height:20px;
+  border:1px solid var(--accent);
+  border-radius:50%;
+  transition:border-color .15s;
+}
+.option__dot::after{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:50%;
+  background:var(--accent);
+  transform:scale(0);
+  transition:transform .15s ease-in-out;
+}
+.option input:checked ~ .option__dot::after{transform:scale(1)}
+.option input:focus-visible ~ .option__dot{outline:2px solid var(--accent);outline-offset:3px}
+
+.option__text{flex:1}
+
+/* Шкала 0–10 */
+.rate{display:flex;flex-wrap:wrap;gap:8px}
+
+.rate__item{flex:1 1 56px;cursor:pointer}
+.rate__item input{position:absolute;opacity:0;width:0;height:0}
+.rate__item span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:48px;
+  background:var(--field-bg);
+  border:1px solid transparent;
+  border-radius:var(--radius);
+  font-size:15px;
+  font-weight:500;
+  transition:background-color .15s,color .15s;
+}
+.rate__item:hover span{background:#ebebeb}
+.rate__item input:checked + span{background:var(--accent);color:var(--on-accent)}
+.rate__item input:focus-visible + span{outline:2px solid var(--accent);outline-offset:2px}
+
+.rate__legend{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:14px;
+  font-weight:300;
+  color:var(--muted);
+}
+
+@media (max-width:600px){
+  .rate__item{flex:1 1 calc(100%/6 - 8px)}
+  .rate__item span{height:42px;font-size:14px}
+}
+
+/* Поля вводу */
+.field{
+  width:100%;
+  padding:15px 16px;
+  border:1px solid transparent;
+  border-radius:var(--radius);
+  background:var(--field-bg);
+  color:var(--text);
+  font-family:inherit;
+  font-size:16px;
+  line-height:1.3;
+}
+.field::placeholder{color:#9a9a9a}
+.field:focus{outline:none;border-color:var(--accent);background:#fff}
+.field.is-invalid{border-color:var(--error)}
+
+.fields{display:flex;flex-direction:column;gap:14px}
+.field-row .step__error{min-height:0}
+.field-row .step__error:empty{margin:0}
+
+/* Результати */
+.result{display:flex;align-items:center;gap:32px}
+.result--split .result__text{flex:1 1 55%}
+.result__img{flex:0 1 40%;display:flex;justify-content:center}
+.result__img img{max-height:320px;width:auto}
+
+.result__title{
+  margin:0 0 14px;
+  font-size:32px;
+  line-height:1.25;
+  font-weight:600;
+}
+.result__descr{
+  margin:0 0 28px;
+  font-size:16px;
+  line-height:1.55;
+}
+
+@media (max-width:760px){
+  .result{flex-direction:column-reverse;text-align:center}
+  .result__title{font-size:24px}
+  .result__img img{max-height:200px}
+}
+
+/* Підвал квізу */
+.quiz__footer{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:10px;
+  padding:16px 40px 24px;
+  border-top:1px solid #f0f0f0;
+}
+.quiz__footer[hidden]{display:none}
+
+@media (max-width:600px){
+  .popup{padding:0}
+  .popup__panel{max-width:none;min-height:100vh;min-height:100dvh;border-radius:0}
+  .popup__close{color:#232323;top:8px;right:8px}
+  .quiz__body{padding:56px 20px 20px;min-height:0}
+  .quiz__footer{padding:14px 20px 20px}
+  .quiz__footer .btn--md{flex:1}
+}
+
+/* Коли попап відкрито — сторінка за ним не прокручується */
+body.is-locked{overflow:hidden}
