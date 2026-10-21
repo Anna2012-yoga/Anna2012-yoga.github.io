@@ -21,7 +21,7 @@ const SHEET_NAME = 'Заявки';
 /** Токен бота від @BotFather                                               */
 const TELEGRAM_TOKEN = 'ВСТАВТЕ_ТОКЕН_БОТА';
 
-/** Ваш особистий chat_id (як дізнатися — в README, крок 4)                  */
+/** chat_id Анни — саме їй приходитимуть заявки (як дізнатися — README, крок 4) */
 const TELEGRAM_CHAT_ID = 'ВСТАВТЕ_ВАШ_CHAT_ID';
 
 /** Чи писати в Telegram про тих, хто не дійшов до контактів
