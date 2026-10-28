@@ -70,6 +70,24 @@ function setup() {
 }
 
 
+/**
+ * Допоміжна. Запустіть, щоб дізнатися, який саме бот стоїть у скрипті —
+ * вона покаже його @ім'я і посилання, яке треба надіслати Анні.
+ */
+function botLink() {
+  const me = telegram('getMe', {});
+
+  if (!me.ok) {
+    throw new Error('Токен не підходить. Telegram каже: ' + (me.description || '—'));
+  }
+
+  const link = 'https://t.me/' + me.result.username;
+  const text = 'Бот: @' + me.result.username + '  →  ' + link;
+  Logger.log(text);
+  return text;
+}
+
+
 /** Зберігає chat_id, готує аркуш і надсилає перевірочне повідомлення. */
 function finish(chatId, name) {
   PropertiesService.getScriptProperties().setProperty('CHAT_ID', String(chatId));
