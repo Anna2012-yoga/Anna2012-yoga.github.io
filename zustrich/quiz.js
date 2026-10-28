@@ -5,7 +5,7 @@
    (вона закінчується на /exec). Поки рядок порожній, квіз працює повністю,
    але заявки нікуди не відправляються.
    ========================================================================= */
-const FORM_ENDPOINT = '';
+const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyBkkvIJrQKyGiBSogQ636jPziBpNwPmTazPC0Zqi1-MNtDxQBuV095kSRC_TEIv1pbNg/exec';
 
 /* Куди вести після успішної заявки */
 const TELEGRAM_CHAT = 'https://t.me/m/9HRGKk6vMGRi';
