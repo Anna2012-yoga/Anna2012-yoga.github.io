@@ -9,17 +9,39 @@
 
 const TELEGRAM_TOKEN = 'ВСТАВТЕ_ТОКЕН_БОТА';
 
+/**
+ * Необов'язково. Заповнюйте, тільки якщо беретe бота, у якого вже налаштований
+ * вебхук (наприклад RespirarBot) — у такого getUpdates не працює, і знайти
+ * chat_id автоматично не вийде.
+ *
+ * Як дізнатися: Анна пише боту @userinfobot — він відповість її номером Id.
+ * Це число і є chat_id. Впишіть його між лапками.
+ */
+const CHAT_ID_MANUAL = '';
+
 
 /**
  * Запустіть цю функцію один раз після того, як Анна написала боту.
- * Вона сама знайде її chat_id, збереже його і надішле їй тестове повідомлення.
+ * Вона знайде її chat_id, збереже його і надішле їй тестове повідомлення.
  */
 function setup() {
   if (TELEGRAM_TOKEN.indexOf('ВСТАВТЕ') === 0) {
     throw new Error('Спочатку вставте токен бота у рядок TELEGRAM_TOKEN угорі.');
   }
 
+  if (CHAT_ID_MANUAL) {
+    return finish(CHAT_ID_MANUAL, 'вказаний вручну чат');
+  }
+
   const answer = telegram('getUpdates', {});
+
+  if (answer.description && answer.description.indexOf('webhook') !== -1) {
+    throw new Error(
+      'У цього бота налаштований вебхук, тому знайти chat_id автоматично не можна. ' +
+      'Попросіть Анну написати боту @userinfobot — він відповість її номером Id. ' +
+      'Впишіть це число у рядок CHAT_ID_MANUAL угорі й запустіть setup ще раз.'
+    );
+  }
 
   if (!answer.ok) {
     throw new Error(
@@ -44,20 +66,31 @@ function setup() {
     throw new Error('Не вдалося розпізнати чат. Напишіть боту ще раз і повторіть.');
   }
 
-  const props = PropertiesService.getScriptProperties();
-  props.setProperty('CHAT_ID', String(chat.id));
+  return finish(chat.id, chat.first_name || chat.title || chat.username || 'чат');
+}
 
-  const name = chat.first_name || chat.title || chat.username || 'чат';
+
+/** Зберігає chat_id, готує аркуш і надсилає перевірочне повідомлення. */
+function finish(chatId, name) {
+  PropertiesService.getScriptProperties().setProperty('CHAT_ID', String(chatId));
 
   prepareSheet();
 
-  telegram('sendMessage', {
-    chat_id: chat.id,
+  const sent = telegram('sendMessage', {
+    chat_id: chatId,
     text: '<b>Приймач заявок налаштовано</b>\n\nСюди приходитимуть заявки з сайту.',
     parse_mode: 'HTML'
   });
 
-  const done = 'Готово. Заявки йтимуть у «' + name + '» (chat_id ' + chat.id + '). ' +
+  if (!sent.ok) {
+    throw new Error(
+      'Chat_id збережено, але повідомлення не пішло. Telegram каже: ' +
+      (sent.description || '—') +
+      '. Найчастіше це означає, що Анна ще не натиснула Start у цього бота.'
+    );
+  }
+
+  const done = 'Готово. Заявки йтимуть у «' + name + '» (chat_id ' + chatId + '). ' +
                'Перевірте Telegram — там має бути повідомлення.';
   Logger.log(done);
   return done;
