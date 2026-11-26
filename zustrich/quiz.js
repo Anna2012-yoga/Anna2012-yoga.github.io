@@ -23,37 +23,18 @@ const panel   = popup.querySelector('.popup__panel');
 
 const allSteps   = [...form.querySelectorAll('.step')];
 const flowSteps  = allSteps.filter(s => ['cover','q','contacts'].includes(s.dataset.step));
-const stepResultA= form.querySelector('[data-step="resultA"]');
-const stepResultB= form.querySelector('[data-step="resultB"]');
+const stepResult = form.querySelector('[data-step="resultA"]');
 
 const btnNext   = footer.querySelector('[data-next]');
 const btnPrev   = footer.querySelector('[data-prev]');
 const btnSubmit = footer.querySelector('[data-submit]');
 
-const NOT_READY = 'Не готов(а) інвестувати гроші і час у своє благополуччя';
-
 let current = flowSteps[0];
 let lastFocus = null;
 
-/* ---------- Умовна логіка кроків ---------- */
-
-function groshi(){
-  const el = form.querySelector('input[name="Groshi"]:checked');
-  return el ? el.value : '';
-}
-
-function isVisible(step){
-  const hideIf = step.dataset.hideIfGroshi;
-  if (hideIf && groshi() === hideIf) return false;
-
-  const showIf = step.dataset.showIfGroshi;
-  if (showIf && !showIf.split('|').includes(groshi())) return false;
-
-  return true;
-}
-
+/* Усі проходять один і той самий шлях — розгалуження немає. */
 function visibleFlow(){
-  return flowSteps.filter(isVisible);
+  return flowSteps;
 }
 
 /* ---------- Навігація ---------- */
@@ -69,7 +50,7 @@ function show(step){
 }
 
 function updateChrome(){
-  const isResult = current.dataset.step === 'resultA' || current.dataset.step === 'resultB';
+  const isResult = current.dataset.step === 'resultA';
   const isCover  = current.dataset.step === 'cover';
 
   footer.hidden = isCover || isResult;
@@ -201,8 +182,6 @@ async function send(data){
 }
 
 async function submit(){
-  const ready = groshi() !== NOT_READY;
-
   btnSubmit.disabled = true;
   btnNext.disabled = true;
 
@@ -212,12 +191,8 @@ async function submit(){
   btnSubmit.disabled = false;
   btnNext.disabled = false;
 
-  if (ready){
-    show(stepResultA);
-    setTimeout(() => { location.href = TELEGRAM_CHAT; }, REDIRECT_DELAY);
-  } else {
-    show(stepResultB);
-  }
+  show(stepResult);
+  setTimeout(() => { location.href = TELEGRAM_CHAT; }, REDIRECT_DELAY);
 }
 
 /* ---------- Відкриття та закриття ---------- */

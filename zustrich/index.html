@@ -115,17 +115,15 @@
           <p class="step__error" aria-live="polite"></p>
         </section>
 
-        <!-- Крок 5 — ховається, якщо не готова інвестувати -->
-        <section class="step" data-step="q" data-field="Resultat" data-required="1"
-                 data-hide-if-groshi="Не готов(а) інвестувати гроші і час у своє благополуччя">
+        <!-- Крок 5 -->
+        <section class="step" data-step="q" data-field="Resultat" data-required="1">
           <h2 class="step__title"><label for="f-resultat">Яким би був для вас ідеальний результат нашої зустрічі? Чи хотіли б отримати індивідуальний покроковий план дій як досягти результату?</label></h2>
           <input type="text" id="f-resultat" name="Resultat" class="field" placeholder="Напишіть ідеальний результат нашої зустрічі" autocomplete="off">
           <p class="step__error" aria-live="polite"></p>
         </section>
 
-        <!-- Крок 6 — контакти, лише для готових інвестувати -->
-        <section class="step step--contacts" data-step="contacts"
-                 data-show-if-groshi="Готова інвестувати до $250|Готов(а) інвестувати будь-яку суму грошей, важливий результат">
+        <!-- Крок 6 — контакти, для всіх без винятку -->
+        <section class="step step--contacts" data-step="contacts">
           <h2 class="step__title">Заповніть форму та оберіть в Телеграмі зручний час онлайн-зустрічі</h2>
           <div class="fields">
             <div class="field-row">
@@ -143,7 +141,7 @@
           </div>
         </section>
 
-        <!-- Результат A — готова інвестувати -->
+        <!-- Результат — один для всіх -->
         <section class="step step--result" data-step="resultA">
           <div class="result">
             <div class="result__text">
@@ -151,18 +149,6 @@
               <p class="result__descr">Переходьте у Telegram — там оберемо зручний час нашої зустрічі.</p>
               <a class="btn btn--md" id="resultAlink" href="https://t.me/m/9HRGKk6vMGRi">ПЕРЕЙТИ В TELEGRAM</a>
             </div>
-          </div>
-        </section>
-
-        <!-- Результат Б — не готова інвестувати -->
-        <section class="step step--result" data-step="resultB">
-          <div class="result result--split">
-            <div class="result__text">
-              <h2 class="result__title">Для вирішення вашої проблеми я підготувала спеціальний безкоштовний відеоурок</h2>
-              <p class="result__descr">Який допоможе вам розібратися з основними причинами напруги та знайти прості й ефективні способи відновлення внутрішнього спокою.</p>
-              <a class="btn btn--md" href="https://t.me/RespirarBot?start=hwoVmbh52QyegOra">ЗАБРАТИ УРОК</a>
-            </div>
-            <div class="result__img"><img src="img/lesson.png" alt="" width="642" height="720" loading="lazy"></div>
           </div>
         </section>
 
